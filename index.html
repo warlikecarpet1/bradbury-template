@@ -4,7 +4,7 @@ async function go() {
   if (!token.startsWith('secret_')) return alert('Paste your real Notion token');
 
   try {
-    const res = await fetch('https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/bradbury-template/main/template.json');
+    const res = await fetch('https://raw.githubusercontent.com/warlikecarpet1/bradbury-template/main/template.json');
     let json = await res.json();
 
     // This line fixes the parent error + works with workspace root
