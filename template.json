@@ -1,0 +1,53 @@
+{
+  "object": "page",
+  "properties": {
+    "title": {
+      "title": [{ "text": { "content": "The Ray Bradbury Challenge – 1000 Nights" } }]
+    }
+  },
+  "icon": { "type": "emoji", "emoji": "📚" },
+  "cover": { "type": "external", "external": { "url": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=2100" } },
+  "children": [
+    { "object": "block", "type": "heading_1", "heading_1": { "rich_text": [{ "text": { "content": "The Ray Bradbury Challenge" } }] } },
+    { "object": "block", "type": "quote", "quote": { "rich_text": [
+      { "text": { "content": "One short story, one essay, and one poem every night for the next 1,000 nights… you’ll be full of stuff, won’t you?" } },
+      { "text": { "content": " — Ray Bradbury" }, "annotations": { "italic": true } }
+    ] } },
+    { "object": "block", "type": "callout", "callout": { "icon": { "emoji": "✦" }, "rich_text": [{ "text": { "content": "Dark vintage aesthetic • 1000-day tracker • streaks • daily entry button" } }] } },
+    { "object": "block", "type": "heading_2", "heading_2": { "rich_text": [{ "text": { "content": "Reading Log" } }] } },
+    { "object": "block", "type": "table", "table": { "table_width": 3, "has_column_header": true, "has_row_header": true, "children": [
+      { "type": "table_row", "table_row": { "cells": [
+        [{ "text": { "content": "Days Completed" } }], [{ "text": { "content": "0", "annotations": { "bold": true } } }], [{ "text": { "content": "← count Done" } }]
+      ] } },
+      { "type": "table_row", "table_row": { "cells": [
+        [{ "text": { "content": "Current Streak" } }], [{ "text": { "content": "0", "annotations": { "bold": true } } }], [{ "text": { "content": "← formula" } }]
+      ] } }
+    ] } },
+    { "object": "block", "type": "database", "database": {
+      "title": [{ "text": { "content": "Reading Log" } }],
+      "properties": {
+        "Date": { "type": "date", "date": {} },
+        "Day #": { "type": "formula", "formula": { "expression": "if(empty(prop(\"Date\")),\"\",format(dateBetween(prop(\"Date\"),date(2025,12,1),\"days\")+1))" } },
+        "Type": { "type": "multi_select", "multi_select": { "options": [
+          { "name": "Essay", "color": "blue" },
+          { "name": "Short Story", "color": "purple" },
+          { "name": "Poem", "color": "green" }
+        ] } },
+        "Title": { "type": "title" },
+        "Author": { "type": "rich_text" },
+        "Notes": { "type": "rich_text" },
+        "Rating": { "type": "number", "number": { "format": "number" } },
+        "Done": { "type": "checkbox" }
+      }
+    } },
+    { "object": "block", "type": "template", "template": {
+      "rich_text": [{ "text": { "content": "New Night Entry" } }],
+      "children": [{ "type": "page", "page": {
+        "properties": {
+          "Date": { "date": { "start": "today" } },
+          "Done": { "checkbox": true }
+        }
+      } }]
+    } }
+  ]
+}
