@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family:system-ui;text-align:center;padding:50px;background:#111;color:white">
+    <h1>Ray Bradbury Challenge – One-Click Import</h1>
+    <input type="text" id="token" placeholder="secret_…" style="width:500px;padding:12px;font-size:18px"><br><br>
+    <button onclick="go()" style="padding:15px 30px;font-size:18px">Import to My Notion</button>
+
+    <script>
+    async function go() {
+      const token = document.getElementById('token').value;
+      const json = await fetch('https://raw.githubusercontent.com/warlikecarpet1/bradbury-template/main/template.json').then(r => r.json());
+      json.parent = { page_id: "" }; // drops in workspace root
+      const res = await fetch('https://api.notion.com/v1/pages', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'Notion-Version': '2022-06-28' },
+        body: JSON.stringify(json)
+      });
+      if (res.ok) { const data = await res.json(); window.open(data.url); alert('Done! Check your Notion.'); }
+      else alert('Error: ' + await res.text());
+    }
+    </script>
+  </body>
+</html>
